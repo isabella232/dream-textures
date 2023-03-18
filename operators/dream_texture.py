@@ -144,6 +144,11 @@ class DreamTexture(bpy.types.Operator):
             if iteration < iteration_limit and not future.cancelled:
                 generate_next()
             else:
+                print("Looking for DreamTexture Output", image)
+                dreamtexture_image_output = bpy.data.images.new(name="DreamTexture Temp", width=image.size[0], height=image.size[1])
+                dreamtexture_image_output.pixels = image.pixels[:]
+                dreamtexture_image_output.name = "DreamTexture Output"
+                print("DreamTexture Output", dreamtexture_image_output)
                 scene.dream_textures_info = ""
                 scene.dream_textures_progress = 0
 
